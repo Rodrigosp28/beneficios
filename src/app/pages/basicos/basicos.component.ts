@@ -137,7 +137,7 @@ export class BasicosComponent implements OnInit {
       this.getLocalidad();
       $('#localidadmodal').modal('hide');
 
-    });
+    }); 
   }
 
   insertArea(area: mArea) {
