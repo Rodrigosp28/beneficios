@@ -77,23 +77,22 @@ export class BenepersonasComponent implements OnInit {
   }
   insertarpersona(){
     // console.log(this.beneficiopersona);
-    Swal.fire({
-      title: 'espere',
-      text: 'Guardando informacion',
-      icon:'info',
-      allowOutsideClick: false
-    });
-    Swal.showLoading();
-    return this.personaservice.insertarBeneficioPersona(this.beneficiopersona).subscribe((data: any) => {
+    
+    this.personaservice.insertarBeneficioPersona(this.beneficiopersona).subscribe((data: any) => {
       // console.log(data);
       if(data.success){
         Swal.fire({
           title: 'Correcto!',
           text: 'se Guardaron los datos correctamente',
           icon: 'success'
+        }).then((result)=>{
+          if(result.value){
+            Swal.close();
+            $('#beneficiomodal').modal('hide');
+            this.getBp();
+          }
         });
-        this.getBp();
-        $('#beneficiomodal').modal('hide');
+        
       }
       else {
         Swal.fire({
@@ -103,6 +102,7 @@ export class BenepersonasComponent implements OnInit {
         });
       }
     });
+    return;
   }
 
 }

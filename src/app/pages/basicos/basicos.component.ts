@@ -100,6 +100,7 @@ export class BasicosComponent implements OnInit {
   }
 
   deleteArea(id: number) {
+    console.log(id);
     return this.catalogoservice.DeleteArea(id).subscribe((data: any) => {
     // console.log(data);
     this.getAreas();
@@ -168,7 +169,7 @@ export class BasicosComponent implements OnInit {
     return this.catalogoservice.PostBeneficio(bene).subscribe((data: any) => {
       this.getBeneficio();
       // console.log(data);
-      $('#beneficiomodal').modal('hide');
+      $('#beneficioomodal').modal('hide');
     });
   }
 
@@ -186,7 +187,7 @@ export class BasicosComponent implements OnInit {
     $('#rolmodal').modal();
   }
   modalBeneficios() {
-    $('#beneficiomodal').modal();
+    $('#beneficioomodal').modal();
   }
 
 }

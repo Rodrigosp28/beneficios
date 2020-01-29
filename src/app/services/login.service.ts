@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class Loginservice {
-  private url='http://localhost/eGeo.API/token';
+  private url='http://localhost/Beneficios/token';
   userToken: string;
   userId: string;
   rolId: string;
