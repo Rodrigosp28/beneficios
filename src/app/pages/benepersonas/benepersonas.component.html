@@ -59,6 +59,7 @@
               <th scope="col">#</th>
               <th scope="col">Beneficio</th>
               <th scope="col">Area</th>
+              <th scope="col">Fecha</th>
               <th scope="col">Tools</th>
             </tr>
           </thead>
@@ -67,8 +68,9 @@
             <th scope="row">{{i+1}}</th>
             <td>{{bene.nombreBeneficio}}</td>
             <td>{{bene.nombreArea}}</td>
+            <td>{{bene.fecha}}</td>
             <td>
-              <button class="btn btn-success mr-1" type="button">
+              <button class="btn btn-success mr-1" (click)="modalBeneficiosview(bene.idBP)" type="button">
                 <i class="fas fa-eye"></i>
               </button>
             </td>
@@ -81,6 +83,7 @@
   </div>
   </div> 
 
+  <!--modal para ingresar-->
   <div class="modal fade" id="beneficiomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -98,9 +101,9 @@
               <option *ngFor="let bene of beneficios" [value]="bene.idBeneficio">{{bene.nombre}}</option>
               </select>
               <label for="bene">Descripcion</label>
-              <input type="email" [(ngModel)]="beneficiopersona.Descripcion" class="form-control" name="beneficio" placeholder="Descripcion del Beneficio">
+              <input type="email" [(ngModel)]="beneficiopersona.descripcion" class="form-control" name="beneficio" placeholder="Descripcion del Beneficio">
               <label for="fecha">Fecha</label>
-              <input type="email" disabled="disabled" [(ngModel)]="beneficiopersona.Fecha" class="form-control" name="fecha" placeholder="Nombre del Beneficio">
+              <input type="email" disabled="disabled" [(ngModel)]="beneficiopersona.fecha" class="form-control" name="fecha" placeholder="Nombre del Beneficio">
             <small id="emailHelp" class="form-text text-muted">Beneficios Depende Al Area</small>
           </div>
         </form>
@@ -108,6 +111,38 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           <button type="button" class="btn btn-primary" (click)="insertarpersona()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--modal para ver-->
+  <div class="modal fade" id="beneficiomodalview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ingresar Beneficio</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Beneficio</label>
+            <select class="form-control" disabled="disabled" name="selec" [(ngModel)]="beneficiopersona.idBeneficio">
+              <option *ngFor="let bene of beneficios" [value]="bene.idBeneficio">{{bene.nombre}}</option>
+              </select>
+              <label for="bene">Descripcion</label>
+              <input disabled="disabled" type="email" [(ngModel)]="beneficiopersona.descripcion" class="form-control" name="beneficio" placeholder="Descripcion del Beneficio">
+              <label for="fecha">Fecha</label>
+              <input type="email" disabled="disabled" [(ngModel)]="beneficiopersona.fecha" class="form-control" name="fecha" placeholder="Nombre del Beneficio">
+            <small id="emailHelp" class="form-text text-muted">Beneficios Depende Al Area</small>
+          </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>

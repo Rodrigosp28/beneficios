@@ -2,8 +2,8 @@ export class mbp {
 idBP: number;
 idPersona : number;
 idBeneficio: number;
-Descripcion: string;
-Fecha: string;
+descripcion: string;
+fecha: string;
 idUser: number;
 nombreBeneficio:string;
 nombreArea: string;

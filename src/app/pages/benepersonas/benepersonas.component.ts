@@ -31,13 +31,8 @@ export class BenepersonasComponent implements OnInit {
   constructor(public routeractivated: ActivatedRoute,
               public catalogoservice: Catalogoservice,
               public personaservice: personaservice) {
-    this.date = new Date();
-    this.d = this.date.getDate().toString();
-    this.m = this.date.getMonth() + 1;
-    this.a = this.date.getFullYear().toString();
-    this.fechaa = `${this.d}/${this.m}/${this.a}`;
-    this.beneficiopersona.Fecha = this.fechaa;
-    this.beneficiopersona.idUser = 3;
+    
+    this.beneficiopersona.idUser = Number(localStorage.getItem('user'));
     this.loading = true;
     this.routeractivated.params.subscribe(params =>{
       this.persona.idPersona = params['id'];
@@ -65,21 +60,33 @@ export class BenepersonasComponent implements OnInit {
   getBp(){
     this.loading = true;
 
-    this.personaservice.getBeneficioPorPersona(this.persona.idPersona).subscribe((data:any)=>{
+    this.personaservice.getBeneficioPorPersona(this.persona.idPersona).subscribe((data: any) => {
       this.apoyos = data.data;
       this.loading = false;
-      // console.log(data);
+      // console.log(this.apoyos);
     });
   }
 
   modalBeneficios() {
     $('#beneficiomodal').modal();
+    this.beneficiopersona.idBeneficio = 0;
+    this.beneficiopersona.nombreArea = '';
+    this.beneficiopersona.nombreBeneficio = '';
+    this.beneficiopersona.fecha ='';
+    this.beneficiopersona.descripcion ='';
+    this.date = new Date();
+    this.d = this.date.getDate().toString();
+    this.m = this.date.getMonth() + 1;
+    this.a = this.date.getFullYear().toString();
+    this.fechaa = `${this.d}/${this.m}/${this.a}`;
+    this.beneficiopersona.fecha = this.fechaa;
   }
-  insertarpersona(){
+  insertarpersona() {
     // console.log(this.beneficiopersona);
     
     this.personaservice.insertarBeneficioPersona(this.beneficiopersona).subscribe((data: any) => {
       // console.log(data);
+      // console.log(this.beneficiopersona);
       if(data.success){
         Swal.fire({
           title: 'Correcto!',
@@ -102,7 +109,15 @@ export class BenepersonasComponent implements OnInit {
         });
       }
     });
-    return;
+    return; 
+  }
+
+  modalBeneficiosview(id: number) {
+    $('#beneficiomodalview').modal();
+    this.personaservice.getBeneficioPorBeneficio(id).subscribe((data: any) => {
+      // console.log(data);
+      this.beneficiopersona = data.data[0];
+    });
   }
 
 }

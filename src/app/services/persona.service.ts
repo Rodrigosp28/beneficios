@@ -51,14 +51,20 @@ export class personaservice {
     const uri = 'http://localhost/Beneficios/api/v0/Beneficios/BeneficioPersona';
     return this.http.get(`${uri}/${id}`);
   }
+
+  getBeneficioPorBeneficio(id: number) {
+    const uri = 'http://localhost/Beneficios/api/v0/Beneficios/BeneficioPersona'
+    return this.http.get(`${uri}/${id}/ByBeneficio`);
+  }
+
   insertarBeneficioPersona(bp:mbp){
     const uri = 'http://localhost/Beneficios/api/v0/Beneficios/BeneficioPersona';
     const body ={
       idBP: bp.idBP,
       idPersona: bp.idPersona,
       idBeneficio: bp.idBeneficio,
-      Descripcion:bp.Descripcion,
-      fecha: bp.Fecha,
+      Descripcion:bp.descripcion,
+      fecha: bp.fecha,
       idUser: bp.idUser
     };
     return this.http.post(uri,body);
