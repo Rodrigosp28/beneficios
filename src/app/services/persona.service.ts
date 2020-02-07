@@ -31,6 +31,11 @@ export class personaservice {
     return this.http.get(uri);
   }
 
+  getPersonasByLocalidad(id:number){
+    const uri = 'http://localhost/Beneficios/api/v0/Beneficios/Persona';
+    return this.http.get(`${uri}/${id}/ByLocalidad`);
+  }
+
   deletePersona(id: number){
     const uri = 'http://localhost/Beneficios/api/v0/Beneficios/Persona';
     return this.http.delete(`${uri}/${id}`);

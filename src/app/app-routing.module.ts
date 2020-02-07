@@ -9,7 +9,8 @@ import { PersonaComponent } from './pages/persona/persona.component';
 import { BenepersonasComponent } from './pages/benepersonas/benepersonas.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RolGuard } from './guards/rol.guard';
-import { LocalidadComponent } from './modals/localidad/localidad.component';
+import { ApoyosComponent } from './pages/apoyos/apoyos.component';
+import { LocalidadComponent } from './pages/localidad/localidad.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'catalogos', component: BasicosComponent, 
       canActivate:[RolGuard] },
       { path: 'buscar', component: BuscarComponent },
+      { path: 'apoyos', component: ApoyosComponent },
       { path: 'localidad', component: LocalidadComponent },
       { path: '**', pathMatch:'full', redirectTo: 'personas' }
 
